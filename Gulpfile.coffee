@@ -7,7 +7,9 @@ gulp.task 'compile',->
   .pipe jade()
   .pipe gulp.dest('dist/')
 
-gulp.task 'webserver', (done)->
+gulp.task 'webserver', ->
   gulp.src('dist').pipe webserver
     livereload: true
     open: false
+gulp.task 'develop',['compile','webserver'],->
+  gulp.watch 'src/**/*.jade',['compile']
